@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Itens</title>
+	<!-- Bootstrap CSS local -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Alerta quando não há informações -->
+        <div class="alert alert-secondary" role="alert" th:if="${languages.empty}">
+            <p class="fw-bold">Nenhuma informação encontrada</p>
+        </div>
+
+        <!-- Tabela exibida quando há informações -->
+        <div th:unless="${#lists.isEmpty(languages)}">
+            <h5>Lista de Itens</h5>
+            <table class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Language</th>                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="l : ${languages}">
+                        <td th:text="${l.language_id}"></td>
+						<td th:text="${l.name}"></td>
+                     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+	<!-- Bootstrap JS local (opcional, necessário apenas se você utilizar componentes que dependem de JavaScript) -->
+	<script src="js/bootstrap.bundle.min.js"></script>
+	
+</body>
+</html>
