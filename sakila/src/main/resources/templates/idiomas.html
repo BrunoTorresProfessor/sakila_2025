@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{layout/cabecalho}">
     <meta charset="UTF-8">
     <title>Lista de Idiomas</title>
 	<!-- Bootstrap CSS local -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+	<!-- Importa o menu padrão do sistema -->
+	<div th:insert="~{layout/menu}"></div>
+	
     <div class="container mt-4">
         <!-- Alerta quando não há informações -->
-        <div class="alert alert-secondary" role="alert" th:if="${idiomas.empty}">
+        <div class="alert alert-secondary" role="alert" th:if="${linguas.empty}">
             <p class="fw-bold">Nenhuma informação encontrada</p>
         </div>
 
         <!-- Tabela exibida quando há informações -->
-        <div th:unless="${#lists.isEmpty(idiomas)}">
+        <div th:unless="${#lists.isEmpty(linguas)}">
             <h5>Lista de Itens</h5>
             <table class="table table-striped" style="width:100%">
                 <thead>
@@ -24,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="idioma : ${idiomas}">
+                    <tr th:each="idioma : ${linguas}">
                         <td th:text="${idioma.languageId}"></td>
 						<td th:text="${idioma.name}"></td>
                      
@@ -36,6 +39,8 @@
 
 	<!-- Bootstrap JS local (opcional, necessário apenas se você utilizar componentes que dependem de JavaScript) -->
 	<script src="js/bootstrap.bundle.min.js"></script>
+	<!-- Importa o rodape padrão do sistema -->
+	<div th:insert="~{layout/rodape}"></div>
 	
 </body>
 </html>

@@ -21,7 +21,7 @@ public class LanguageController {
 		
 		model.addAttribute("linguas", languageRepository.findAll());
 		
-        return "language"; 
+        return "idiomas"; 
     	    	
     }	
 	@GetMapping(value="/idiomas")
