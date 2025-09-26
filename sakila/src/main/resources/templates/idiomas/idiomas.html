@@ -3,14 +3,26 @@
 <head th:insert="~{layout/cabecalho}">
     <meta charset="UTF-8">
     <title>Lista de Idiomas</title>
-	<!-- Bootstrap CSS local -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap CSS local -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-	<!-- Importa o menu padrão do sistema -->
-	<div th:insert="~{layout/menu}"></div>
-	
+    <!-- Importa o menu padrão do sistema -->
+    <div th:insert="~{layout/menu}"></div>
+
     <div class="container mt-4">
+        <!-- Botão Novo -->
+        <div class="mb-3">
+            <a href="/idiomas/novo" class="btn btn-primary">Novo Idioma</a>
+        </div>
+		
+		<!-- Mensagem de Sucesso -->
+		<div th:if="${!#strings.isEmpty(mensagem)}" class="alert alert-success" role="alert">
+		    <span th:text="${mensagem}"></span>
+		</div>
+
+
+
         <!-- Alerta quando não há informações -->
         <div class="alert alert-secondary" role="alert" th:if="${linguas.empty}">
             <p class="fw-bold">Nenhuma informação encontrada</p>
@@ -29,18 +41,17 @@
                 <tbody>
                     <tr th:each="idioma : ${linguas}">
                         <td th:text="${idioma.languageId}"></td>
-						<td th:text="${idioma.name}"></td>
-                     
+                        <td th:text="${idioma.name}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-	<!-- Bootstrap JS local (opcional, necessário apenas se você utilizar componentes que dependem de JavaScript) -->
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<!-- Importa o rodape padrão do sistema -->
-	<div th:insert="~{layout/rodape}"></div>
-	
+    <!-- Bootstrap JS local (opcional) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Importa o rodape padrão do sistema -->
+    <div th:insert="~{layout/rodape}"></div>
+
 </body>
 </html>
