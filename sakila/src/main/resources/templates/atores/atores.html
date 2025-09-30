@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{layout/cabecalho}">
     <meta charset="UTF-8">
-    <title>Lista de Idiomas</title>
+    <title>Lista de Atores</title>
     <!-- Bootstrap CSS local -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
@@ -13,7 +13,7 @@
     <div class="container mt-4">
         <!-- Botão Novo -->
         <div class="mb-3">
-            <a href="/idiomas/novo" class="btn btn-primary">Novo Idioma</a>
+            <a href="/atores/novo" class="btn btn-primary">Novo Ator</a>
         </div>
 		
 		<!-- Mensagem de Sucesso -->
@@ -25,12 +25,12 @@
 
 
         <!-- Alerta quando não há informações -->
-        <div class="alert alert-secondary" role="alert" th:if="${linguas.empty}">
+        <div class="alert alert-secondary" role="alert" th:if="${atores.empty}">
             <p class="fw-bold">Nenhuma informação encontrada</p>
         </div>
 
         <!-- Tabela exibida quando há informações -->
-        <div th:unless="${#lists.isEmpty(linguas)}">
+        <div th:unless="${#lists.isEmpty(atores)}">
             <h5>Lista de Itens</h5>
             <table class="table table-striped" style="width:100%">
                 <thead>
@@ -40,9 +40,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="idioma : ${linguas}">
-                        <td th:text="${idioma.languageId}"></td>
-                        <td th:text="${idioma.name}"></td>
+                    <tr th:each="a : ${atores}">
+                        <td th:text="${a.actorId}"></td>
+                        <td th:text="${a.firstName}"></td>
                     </tr>
                 </tbody>
             </table>
