@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/cabecalho}">
+    <meta charset="UTF-8">
+    <title>Novo Idioma</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:insert="~{layout/menu}"></div>
+
+    <div class="container mt-5">
+        <h3>Novo Idioma</h3>
+
+        <form th:action="@{/idiomas/salvar}" th:object="${idioma}" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome do Idioma</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a th:href="@{/}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <div th:insert="~{layout/rodape}"></div>
+</body>
+</html>
