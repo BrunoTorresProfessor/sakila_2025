@@ -37,12 +37,19 @@
                     <tr>
                         <th>ID</th>
                         <th>Language</th>                       
+						<th>Operações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="idioma : ${linguas}">
                         <td th:text="${idioma.languageId}"></td>
                         <td th:text="${idioma.name}"></td>
+						<td>
+							<form th:action="@{/idiomas/alterar}" method="post">
+							<input type="hidden" name="languageId" th:value="${idioma.languageId}">
+							<button type="submit" class="btn btn-secondary">Alterar</button>
+							</form>
+						</td>
                     </tr>
                 </tbody>
             </table>

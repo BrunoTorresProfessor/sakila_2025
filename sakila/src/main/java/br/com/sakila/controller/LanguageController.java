@@ -37,11 +37,23 @@ public class LanguageController {
 
     // Processar o cadastro
     @PostMapping("/idiomas/salvar")
-    public String salvarIdioma(@ModelAttribute("idioma") LanguageModel idioma, RedirectAttributes redirectAttributes) {
+    public String salvarIdioma(ModelMap model,@ModelAttribute("idioma") LanguageModel idioma, RedirectAttributes redirectAttributes) {
     	
     	idioma.setLastUpdate(Timestamp.from(Instant.now())); // ✅ seta o timestamp atual 
     	languageRepository.save(idioma);
-        redirectAttributes.addFlashAttribute("mensagem", "Idioma cadastrado com sucesso!");
-        return "redirect:/";
+    	model.addAttribute("linguas", languageRepository.findAll());
+        redirectAttributes.addFlashAttribute("mensagem", "Operação realizada com sucesso!");
+        return "idiomas/idiomas";
     }
+    // Formulário para novo idioma
+    @PostMapping("/idiomas/alterar")
+    public String alterarIdiomaForm(ModelMap model, Long languageId) {
+        
+    	System.out.println("O id recebido foi: " + languageId);
+    	model.addAttribute("idioma",languageRepository.getOne(languageId));
+         
+    	
+        return "idiomas/alterar"; 
+    }
+
 }
