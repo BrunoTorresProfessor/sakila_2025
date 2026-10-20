@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -119,12 +118,13 @@ class LanguageSeleniumTests {
 
 	private void deleteLanguage() {
 		WebElement updatedRow = driver.findElement(rowByName(updatedName));
-		scrollAndClick(updatedRow.findElement(By.cssSelector("button[type='submit']")));
+		scrollAndClick(updatedRow.findElement(By.cssSelector("button[data-bs-toggle='modal']")));
 
-		Alert confirmation = wait.until(ExpectedConditions.alertIsPresent());
-		assertEquals("Confirma a exclusão deste idioma?", confirmation.getText());
+		WebElement confirmationModal = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.cssSelector("#delete-language-modal.show")));
+		assertTrue(confirmationModal.findElement(By.id("delete-modal-description")).getText().contains(updatedName));
 		pauseForVisualExecution();
-		confirmation.accept();
+		confirmationModal.findElement(By.id("confirm-delete-button")).click();
 
 		waitForSuccessMessage("Idioma excluído com sucesso.");
 		assertTrue(wait.until(ExpectedConditions.invisibilityOfElementLocated(rowByName(updatedName))));
