@@ -8,4 +8,7 @@ import br.com.sakila.model.LanguageModel;
 @Repository
 public interface LanguageRepository extends JpaRepository<LanguageModel, Long> {
 
+	boolean existsByNameIgnoreCase(String name);
+
+	boolean existsByNameIgnoreCaseAndLanguageIdNot(String name, Long languageId);
 }

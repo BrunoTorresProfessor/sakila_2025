@@ -16,14 +16,14 @@ public class LanguageModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "language_id")
 	private Long languageId;	
 	
-	@Column(name = "name")
+	@Column(name = "name", nullable = false, length = 20)
 	private String name;
 	
-	@Column(name = "last_update")
+	@Column(name = "last_update", nullable = false, insertable = false, updatable = false)
 	private Timestamp lastUpdate;
 
 	public Long getLanguageId() {
